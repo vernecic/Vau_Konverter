@@ -8,7 +8,7 @@ import uuid # unique ID-jevi
 load_dotenv() # load .env fajla
 
 app = Flask(__name__) # inicijalizacija flask aplikacije
-CORS(app) # komunikacija fronta i back-a
+CORS(app) # omogućuje komunikaciju fronta i back-a
 
 R2_ACCOUNT_ID = os.getenv('R2_ACCOUNT_ID')
 R2_ACCESS_KEY_ID = os.getenv('R2_ACCESS_KEY_ID')
@@ -22,9 +22,6 @@ s3 = boto3.client(
     aws_access_key_id=R2_ACCESS_KEY_ID,
     aws_secret_access_key=R2_SECRET_ACCESS_KEY,
 )
-bucket_name = os.getenv('R2_BUCKET_NAME')
-
-
 
 @app.route('/upload', methods=["POST"]) 
 def get_upload_url():
