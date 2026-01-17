@@ -1,5 +1,5 @@
 import os ## za pristup/čitanje .env varijabla
-from flask import Flask, request, jsonify # flasl
+from flask import Flask, jsonify # flasl
 from flask_cors import CORS # komunikacija između fronta i backa
 import boto3 # aws sdk - sfotware development kit
 from dotenv import load_dotenv # loadanje varijabla iz .env
