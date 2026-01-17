@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue'
+import axios from 'axios'
 
 const file = ref(null)
 const uploadedFile = ref(null)
@@ -9,6 +10,19 @@ const openInput = () => {
 }
 const uploadFile = () => {
   uploadedFile.value = file.value.files[0]
+}
+
+const URL = 'http://127.0.0.1:5000/test'
+const data = ref(null)
+
+const fetchData = async () => {
+  try {
+    const response = await axios.get(URL)
+    data.value = response.data
+    console.log(data.value)
+  } catch (error) {
+    console.log(error)
+  }
 }
 </script>
 <template>
@@ -37,6 +51,7 @@ const uploadFile = () => {
         </p>
         <button
           class="border-2 border-[#5985E1] rounded-lg py-1 font-semibold px-2 mt-2 hover:bg-[#5985E1] hover:text-white transition duration-200 cursor-pointer"
+          @click="fetchData"
         >
           Convert to .wav
         </button>
