@@ -17,7 +17,7 @@ const data = ref(null)
 
 const fileUploadUrl = ref('')
 
-const fetchData = async () => {
+const convertFile = async () => {
   try {
     const response = await axios.post(URL)
     data.value = response.data
@@ -54,7 +54,7 @@ const fetchData = async () => {
         </p>
         <button
           class="border-2 border-[#5985E1] rounded-lg py-1 font-semibold px-2 mt-2 hover:bg-[#5985E1] hover:text-white transition duration-200 cursor-pointer"
-          @click="fetchData"
+          @click="convertFile"
         >
           Convert to .wav
         </button>

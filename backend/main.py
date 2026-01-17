@@ -49,8 +49,8 @@ def get_upload_url():
             "key": key
         })
     
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
+    except Exception:
+        return jsonify({"error": str(Exception)}), 500
 
 
 if __name__ == "__main__":
