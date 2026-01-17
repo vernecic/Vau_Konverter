@@ -32,7 +32,7 @@ def get_upload_url():
         file_id = str(uuid.uuid4()) # random id za fajl, string
         key = f"uploads/{file_id}.mp3" # path 
         
-        # meto na s3 (boto3.client) objektu
+        # meto na s3 (boto3.client) objektu - https://developers.cloudflare.com/r2/api/s3/presigned-urls/
         presigned_url = s3.generate_presigned_url(
             'put_object', # metoda
             Params={
