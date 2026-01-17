@@ -12,12 +12,12 @@ const uploadFile = () => {
   uploadedFile.value = file.value.files[0]
 }
 
-const URL = 'http://127.0.0.1:5000/test'
+const URL = 'http://127.0.0.1:5000/upload'
 const data = ref(null)
 
 const fetchData = async () => {
   try {
-    const response = await axios.get(URL)
+    const response = await axios.post(URL)
     data.value = response.data
     console.log(data.value)
   } catch (error) {
