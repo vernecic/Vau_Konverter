@@ -12,14 +12,28 @@ const uploadFile = () => {
   uploadedFile.value = file.value.files[0]
 }
 
-const URL = 'http://127.0.0.1:5000/test'
+const URL = 'http://127.0.0.1:5000/upload'
 const data = ref(null)
 
-const fetchData = async () => {
+const fileUploadUrl = ref('')
+
+const convertFile = async () => {
   try {
-    const response = await axios.get(URL)
+    const response = await axios.post(URL)
     data.value = response.data
-    console.log(data.value)
+    fileUploadUrl.value = data.value.upload_url
+
+    const putResponse = await fetch(fileUploadUrl.value, {
+      method: 'PUT',
+      body: uploadedFile.value,
+      headers: {
+        'Content-Type': 'audio/mpeg',
+      },
+    })
+    if (putResponse.ok) {
+      console.log('Fajl je gore')
+    }
+    console.log(fileUploadUrl.value)
   } catch (error) {
     console.log(error)
   }
@@ -51,7 +65,7 @@ const fetchData = async () => {
         </p>
         <button
           class="border-2 border-[#5985E1] rounded-lg py-1 font-semibold px-2 mt-2 hover:bg-[#5985E1] hover:text-white transition duration-200 cursor-pointer"
-          @click="fetchData"
+          @click="convertFile"
         >
           Convert to .wav
         </button>
