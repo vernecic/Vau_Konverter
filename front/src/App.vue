@@ -22,6 +22,17 @@ const convertFile = async () => {
     const response = await axios.post(URL)
     data.value = response.data
     fileUploadUrl.value = data.value.upload_url
+
+    const putResponse = await fetch(fileUploadUrl.value, {
+      method: 'PUT',
+      body: uploadedFile.value,
+      headers: {
+        'Content-Type': 'audio/mpeg',
+      },
+    })
+    if (putResponse.ok) {
+      console.log('Fajl je gore')
+    }
     console.log(fileUploadUrl.value)
   } catch (error) {
     console.log(error)
