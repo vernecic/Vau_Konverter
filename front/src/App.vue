@@ -12,7 +12,7 @@ const uploadFile = () => {
   uploadedFile.value = file.value.files[0]
 }
 
-const URL = 'http://127.0.0.1:5000/upload'
+const URL = '/api/upload'
 const data = ref(null)
 
 const fileUploadUrl = ref('')
