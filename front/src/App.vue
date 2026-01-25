@@ -49,7 +49,7 @@ const convertFile = async () => {
       <span class="text-slate-900 font-semibold">.wav</span>
     </p>
     <div
-      class="flex flex-col gap-4 items-center border border-slate-600 rounded-xl border-dashed p-10 mt-5 w-[600px]"
+      class="flex flex-col gap-4 items-center border border-slate-600 rounded-xl border-dashed p-10 mt-5 w-150"
     >
       <img src="/public/upload.svg" class="w-40" />
       <input class="hidden" type="file" ref="file" accept=".mp3" @change="uploadFile" />
