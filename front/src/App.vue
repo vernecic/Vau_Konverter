@@ -38,9 +38,6 @@ const convertFile = async () => {
     if (putResponse.ok) {
       console.log('Fajl je gore')
       const notifyBackend = await axios.post('/api/convert', { file_id: fileId, mp3_key: mp3key })
-      console.log('BACKEND RESPONSE:', notifyBackend)
-      console.log('BACKEND DATA:', notifyBackend.data)
-      console.log('WAV URL:', notifyBackend.data.wav_url)
 
       downloadLink.value = notifyBackend.data.wav_url
       console.log('Download Link:', downloadLink.value)
