@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vau-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vau-backend
+  template:
+    metadata:
+      labels:
+        app: vau-backend
+    spec:
+      containers:
+        - name: backend
+          image: viderncic/vaukonverter-backend:latest
+          ports:
+            - containerPort: 5000
+          envFrom:
+            - secretRef:
+                name: r2-secrets
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: vau-backend
+spec:
+  selector:
+    app: vau-backend
+  ports:
+    - port: 5000
+      targetPort: 5000

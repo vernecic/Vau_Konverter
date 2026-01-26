@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vau-worker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vau-worker
+  template:
+    metadata:
+      labels:
+        app: vau-worker
+    spec:
+      containers:
+        - name: worker
+          image: viderncic/vaukonverter-worker:latest
+          envFrom:
+            - secretRef:
+                name: r2-secrets
