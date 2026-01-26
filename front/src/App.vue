@@ -5,6 +5,9 @@ import axios from 'axios'
 const file = ref(null)
 const uploadedFile = ref(null)
 
+const downloadLink = ref('')
+const downloadReady = ref(false)
+
 const openInput = () => {
   file.value.click()
 }
@@ -22,6 +25,8 @@ const convertFile = async () => {
     const response = await axios.post(URL)
     data.value = response.data
     fileUploadUrl.value = data.value.upload_url
+    const fileId = data.value.file_id
+    const mp3key = data.value.key
 
     const putResponse = await fetch(fileUploadUrl.value, {
       method: 'PUT',
@@ -32,7 +37,17 @@ const convertFile = async () => {
     })
     if (putResponse.ok) {
       console.log('Fajl je gore')
+      const notifyBackend = await axios.post('/api/convert', { file_id: fileId, mp3_key: mp3key })
+      console.log('BACKEND RESPONSE:', notifyBackend)
+      console.log('BACKEND DATA:', notifyBackend.data)
+      console.log('WAV URL:', notifyBackend.data.wav_url)
+
+      downloadLink.value = notifyBackend.data.wav_url
+      console.log('Download Link:', downloadLink.value)
+      console.log('Konverzija gotova!')
+      downloadReady.value = true
     }
+
     console.log(fileUploadUrl.value)
   } catch (error) {
     console.log(error)
@@ -69,6 +84,14 @@ const convertFile = async () => {
         >
           Convert to .wav
         </button>
+      </div>
+      <div v-if="downloadReady">
+        <a
+          :href="downloadLink"
+          download
+          class="rounded-lg py-2 px-4 bg-green-500 text-white font-semibold"
+          >Preuzmi .wav</a
+        >
       </div>
     </div>
   </div>

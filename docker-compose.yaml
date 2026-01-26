@@ -18,9 +18,17 @@ services:
     build: ./front
     container_name: vaukonverter-frontend
     ports:
-      - "80:80"
+      - "3000:80"
     depends_on:
       - backend
+    networks:
+      - vaukonverter-network
+
+  worker:
+    build: ./worker
+    container_name: vaukonverter-worker
+    ports:
+      - "8000:8000"
     networks:
       - vaukonverter-network
 
