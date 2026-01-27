@@ -7,7 +7,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # ovo je cloud runner, ne self-hosted
 
     steps:
       - name: Checkout repo
@@ -24,14 +24,18 @@ jobs:
           debug: true
           script: |
             echo "SSH connection successful!"
-            echo "Updating Docker images..."
-            docker pull vernecic/vau_front:latest
-            docker pull vernecic/vau_backend:latest
+            echo "Updating Docker images from Docker Hub..."
+            docker pull vidernecic/vaukonverter-frontend:latest
+            docker pull vidernecic/vaukonverter-worker:latest
+            docker pull vidernecic/vaukonverter-backend:latest
             echo "Restarting containers..."
             docker stop vau_front || true
             docker rm vau_front || true
-            docker run -d --name vau_front vernecic/vau_front:latest
+            docker run -d --name vau_front vidernecic/vaukonverter-frontend:latest
+            docker stop vau_worker || true
+            docker rm vau_worker || true
+            docker run -d --name vau_worker vidernecic/vaukonverter-worker:latest
             docker stop vau_backend || true
             docker rm vau_backend || true
-            docker run -d --name vau_backend vernecic/vau_backend:latest
+            docker run -d --name vau_backend vidernecic/vaukonverter-backend:latest
             echo "Deploy finished successfully!"
