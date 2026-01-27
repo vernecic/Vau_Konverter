@@ -42,3 +42,34 @@ jobs:
           context: ./worker
           push: true
           tags: vidernecic/vaukonverter-worker:latest
+
+          
+deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          port: ${{ secrets.SERVER_PORT }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          script: |
+            set -e
+            cd ~/Vau_Konverter
+            git pull
+
+            # Ako server IMA docker compose:
+            if docker compose version >/dev/null 2>&1; then
+              docker compose up -d --build
+            else
+              # Fallback (kao što si ti radio) - compose v2 kroz docker cli container
+              docker run --rm \
+                -v /var/run/docker.sock:/var/run/docker.sock \
+                -v "$PWD:$PWD" \
+                -w "$PWD" \
+                docker:28.2.2-cli sh -lc '
+                  apk add --no-cache docker-cli-compose >/dev/null
+                  docker compose up -d --build
+                '
+            fi
