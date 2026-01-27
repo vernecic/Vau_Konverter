@@ -32,7 +32,7 @@ jobs:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER_VID }}
           key: ${{ secrets.SERVER_SSH_KEY_VID }}
-          port: 22
+          port: 2127
           script: |
             echo "SSH connection successful!"
             echo "Updating Docker images..."
