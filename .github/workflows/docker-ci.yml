@@ -43,8 +43,8 @@ jobs:
           push: true
           tags: vidernecic/vaukonverter-worker:latest
 
-          
-deploy:
+            
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Deploy via SSH
