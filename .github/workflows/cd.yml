@@ -1,3 +1,5 @@
+# trigger CD again
+
 name: CD - Dry Run Deploy
 
 # workflow se pokreće samo na cd-test branch
