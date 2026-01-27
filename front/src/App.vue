@@ -87,7 +87,7 @@ const convertFile = async () => {
           :href="downloadLink"
           download
           class="rounded-lg py-2 px-4 bg-green-500 text-white font-semibold"
-          >Preuzmi .wav</a
+          >Preuzmi svoj .wav</a
         >
       </div>
     </div>
