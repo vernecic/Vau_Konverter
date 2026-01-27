@@ -32,7 +32,7 @@ jobs:
       - name: Build & push frontend
         uses: docker/build-push-action@v6
         with:
-          context: ./frontend
+          context: ./front
           push: true
           tags: vidernecic/vaukonverter-frontend:latest
 
