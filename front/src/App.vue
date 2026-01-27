@@ -60,7 +60,7 @@ const convertFile = async () => {
       Easily convert your<span class="text-slate-900 font-semibold">.mp3</span> files to
       <span class="text-slate-900 font-semibold">.wav</span>
     </p>
-    <divw
+    <div
       class="flex flex-col gap-4 items-center border border-slate-600 rounded-xl border-dashed p-10 mt-5 w-150"
     >
       <img src="/public/upload.svg" class="w-40" />
