@@ -57,10 +57,10 @@ const convertFile = async () => {
   >
     <div class="text-5xl 0 font-bold">VauKonverter</div>
     <p class="mt-2">
-      Easily convert your TEST 1<span class="text-slate-900 font-semibold">.mp3</span> files to
+      Easily convert your<span class="text-slate-900 font-semibold">.mp3</span> files to
       <span class="text-slate-900 font-semibold">.wav</span>
     </p>
-    <div
+    <divw
       class="flex flex-col gap-4 items-center border border-slate-600 rounded-xl border-dashed p-10 mt-5 w-150"
     >
       <img src="/public/upload.svg" class="w-40" />
