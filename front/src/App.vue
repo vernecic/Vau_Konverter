@@ -57,7 +57,7 @@ const convertFile = async () => {
   >
     <div class="text-5xl 0 font-bold">VauKonverter</div>
     <p class="mt-2">
-      Easily convert your ACTIONS <span class="text-slate-900 font-semibold">.mp3</span> files to
+      Easily convert your TEST <span class="text-slate-900 font-semibold">.mp3</span> files to
       <span class="text-slate-900 font-semibold">.wav</span>
     </p>
     <div
