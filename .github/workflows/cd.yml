@@ -1,20 +1,19 @@
-name: CD - Dry Run Deploy
+name: CD - Deploy via SSH
 
 on:
   push:
     branches:
-      - cd-test
-  workflow_dispatch:
+      - cd-test  # workflow se pokreće kad push-aš na svoj test branch
 
 jobs:
-  dry-run-deploy:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Test SSH connection
+      - name: Test SSH and deploy
         uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{ secrets.SERVER_HOST }}
@@ -24,6 +23,15 @@ jobs:
           port: 22
           debug: true
           script: |
-            echo "SSH connection successful"
-            whoami
-            hostname
+            echo "SSH connection successful!"
+            echo "Updating Docker images..."
+            docker pull vernecic/vau_front:latest
+            docker pull vernecic/vau_backend:latest
+            echo "Restarting containers..."
+            docker stop vau_front || true
+            docker rm vau_front || true
+            docker run -d --name vau_front vernecic/vau_front:latest
+            docker stop vau_backend || true
+            docker rm vau_backend || true
+            docker run -d --name vau_backend vernecic/vau_backend:latest
+            echo "Deploy finished successfully!"
