@@ -63,7 +63,7 @@ jobs:
             if docker compose version >/dev/null 2>&1; then
               docker compose up -d --build
             else
-              # Fallback (kao što si ti radio) - compose v2 kroz docker cli container
+              # Fallback () - compose v2 kroz docker cli container
               docker run --rm \
                 -v /var/run/docker.sock:/var/run/docker.sock \
                 -v "$PWD:$PWD" \

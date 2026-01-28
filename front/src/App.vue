@@ -69,7 +69,7 @@ const convertFile = async () => {
         class="py-2 px-4 rounded-lg font-semibold border-slate-500 border-2 hover:bg-slate-500 transition duration-200 cursor-pointer"
         @click="openInput"
       >
-        Upload your .mp3 file Dajte nam 5
+        Upload your .mp3 file
       </button>
       <div v-if="uploadedFile" class="flex flex-col">
         <p class="flex gap-2">
