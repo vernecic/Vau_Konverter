@@ -55,7 +55,7 @@ const convertFile = async () => {
   <div
     class="bg-linear-to-l from-zinc-300 to-zinc-400 min-h-screen flex justify-center items-center flex-col font-inter text-slate-800"
   >
-    <div class="text-5xl 0 font-bold">VauKonverter FIPU </div>
+    <div class="text-5xl 0 font-bold">VauKonverter</div>
     <p class="mt-2">
       Easily convert your<span class="text-slate-900 font-semibold">.mp3</span> files to
       <span class="text-slate-900 font-semibold">.wav</span>
